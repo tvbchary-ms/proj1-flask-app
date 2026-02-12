@@ -13,5 +13,5 @@ def home():
     <p><b>Hostname:</b> {socket.gethostname()}</p>
     <p><b>Time:</b> {datetime.datetime.now()}</p>
     <br>
-    <h4>Designed and Deployed by TVB Chary （丁陽） </h4>
+    <h4>Designed and Deployed by TV Bhaskarachary （丁陽）, Tamkang University </h4>
     """
