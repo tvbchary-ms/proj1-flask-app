@@ -1,0 +1,12 @@
+git push
+   ↓
+GitHub Actions
+   ↓
+Build Docker image
+   ↓
+Push to GHCR
+   ↓
+SSH into EC2
+   ↓
+docker compose pull
+docker compose up -d
