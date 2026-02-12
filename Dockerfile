@@ -1,33 +1,18 @@
-# Use lightweight Python image
+# Use slim Python image
 FROM python:3.11-slim
 
-# Prevent Python from writing .pyc files
-ENV PYTHONDONTWRITEBYTECODE=1
-ENV PYTHONUNBUFFERED=1
-
-# Create app directory
+# Set working directory
 WORKDIR /app
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y \
-    build-essential \
-    && rm -rf /var/lib/apt/lists/*
-
-# Copy requirements first (better caching)
-COPY requirements.txt .
-
-# Install dependencies
+# Copy requirements and install dependencies
+COPY requirements.txt /app/
 RUN pip install --no-cache-dir -r requirements.txt
 
-# Copy project
-COPY . .
+# Copy app source
+COPY . /app/
 
-# Create non-root user
-RUN useradd -m appuser
-USER appuser
-
-# Expose port
+# Expose port 5000
 EXPOSE 5000
 
 # Run with Gunicorn
-CMD ["gunicorn", "-b", "0.0.0.0:5000", "run:app"]
+CMD ["gunicorn", "-w", "4", "-b", "0.0.0.0:5000", "app:app"]

@@ -6,7 +6,7 @@ services:
     container_name: flask-app
     environment:
       - APP_VERSION=2.0
-      - ENVIRONMENT=production
+      - ENVIRONMENT=development
     expose:
       - "5000"
 
